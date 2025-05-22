@@ -14,7 +14,7 @@ struct Keuangan {
 };
 
 void menyimpanData(const Keuangan& data) {
-    ofstream file("data_pribadi.txt", ios::app);
+    ofstream file("data_uang.txt", ios::app);
     if (file.is_open()) {
         file << data.bulan << " " << data.tahun << " "
              << data.UangBulanan << " "
@@ -32,8 +32,8 @@ void tampilkanRingkasan(const Keuangan& data) {
     cout << "Pengeluaran  : Rp "  << data.pengeluaran << endl;
     cout << "Sisa Uang    : Rp "  << data.sisa << endl;
 
-    if (data.sisa > 400000) {
-        cout << "Kamu disarankan untuk menabung minimal Rp 300.000 pada bulan ini!" << endl;
+    if (data.sisa > 500000) {
+        cout << "Kamu disarankan untuk menabung minimal Rp 400.000 pada bulan ini!" << endl;
     } else if (data.sisa > 0) {
         cout << "Harus tetap hemat ya Faiz!, usahakan menabung minimal Rp " << data.sisa * 0.5 << endl;
     } else {
@@ -42,7 +42,7 @@ void tampilkanRingkasan(const Keuangan& data) {
 }
 
 void tampilkanRiwayat() {
-    ifstream file("data_pribadi.txt");
+    ifstream file("data_uang.txt");
     if (file.is_open()) {
         string bulan;
         int tahun;
@@ -60,7 +60,7 @@ void tampilkanRiwayat() {
     }
 }
 void meresetDataKeuangan() {
-    ofstream file("data_pribadi.txt", ios::trunc);
+    ofstream file("data_uang.txt", ios::trunc);
     if (file.is_open()) {
         file.close();
         cout << "Semua data keuangan berhasil di-reset." << endl;
@@ -101,7 +101,7 @@ int main() {
     do{
     cout << "-------------------------------------------------" <<endl;
     cout << "|                                               |" <<endl;
-    cout << "|          Pengelola Keuangan Bulanan           |" <<endl;
+    cout << "|      Pengelola Keuangan pribadi bulanan       |" <<endl;
     cout << "|                                               |" <<endl;
     cout << "|-----------------------------------------------|" <<endl;
     cout << "|  1. Catatan Keuangan Bulanan                  |" <<endl;
@@ -116,7 +116,7 @@ int main() {
 
     if(pilihanMenu == 1){
         Keuangan data;
-        cout << "\nSelamat Datang, Faiz! segera catat keuangan Faiz bulan ini!." << endl;
+        cout << "\nSelamat Datang, Faiz! catat keuangan Faiz bulan ini!." << endl;
 
         cout << "Masukkan nama bulan (Contoh : Juni) : ";
         cin >> data.bulan;
@@ -149,6 +149,7 @@ int main() {
     } else {
         cout << "Konfirmasi dibatalkan." <<endl;
     }
+    
     } else if (pilihanMenu == 4){
         cout << "Terima kasih telah menggunakan pengelola keuangan." <<endl;
         break;
