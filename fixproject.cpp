@@ -8,34 +8,45 @@ using namespace std;
 struct Keuangan {
     string bulan;
     int tahun;
-    float UangBulanan;
+    float uangBulanan;
     float pengeluaranBulanan;
     float sisaBulanan;
+    float targetMenabung;
+    string namaPengeluaran1, namaPengeluaran2;
+    float jumlahPengeluaran1,jumlahPengeluaran2;
 };
 
 void menyimpanData(const Keuangan& data) {
     ofstream file("data_uang.txt", ios::app);
     if (file.is_open()) {
-        file << data.bulan << " " << data.tahun << " " << data.UangBulanan << " " << data.pengeluaranBulanan << " " << data.sisaBulanan << endl;
+        file << data.bulan << " " << data.tahun << " " << data.uangBulanan << " " << data.pengeluaranBulanan << " " << data.sisaBulanan << " " << data.namaPengeluaran1 << " " 
+        << data.jumlahPengeluaran1 << " " << data.namaPengeluaran2 << " " << data.jumlahPengeluaran2 << endl;
         file.close();
     } else {
         cout << " Yah gagal menyimpan data ke file." << endl;
     }
 }
-
 void tampilkanRingkasan(const Keuangan& data) {
     cout << "\n ---- Ringkasan Keuangan bulanan Faiz Bulan " << data.bulan << " " << data.tahun << " ----" << endl;
-    cout << "Uang Bulanan         : Rp "  << data.UangBulanan << endl;
+    cout << "Uang Bulanan         : Rp "  << data.uangBulanan << endl;
     cout << "Pengeluaran Bulanan  : Rp "  << data.pengeluaranBulanan << endl;
     cout << "Sisa Uang Bulanan    : Rp "  << data.sisaBulanan << endl;
+    cout << "Jenis Pengeluaran 1   : " << data.namaPengeluaran1 << " Rp " << data.jumlahPengeluaran1 <<endl;
+    cout << "Jenis Pengeluaran 2   : " << data.namaPengeluaran2 << " Rp " << data.jumlahPengeluaran2 <<endl;
 
-    if (data.sisaBulanan > 500000) {
+
+    if (data.sisaBulanan > 600000) {
         cout << "Faiz disarankan untuk menabung minimal Rp 400.000 pada bulan ini!" << endl;
+    } else if (data.sisaBulanan > 400000) {
+        cout << "Faiz kamu disarankan untuk menabung minimal Rp 300.000 pada bulan ini!" <<endl;
+    } else if (data.sisaBulanan > 50000) {
+        cout << "Hati-hati Faiz keuanganmu hampir menipis, pengeluarannya lebih dikurangi lagi" <<endl;
     } else if (data.sisaBulanan > 0) {
         cout << "Harus tetap hemat ya Faiz!, usahakan menabung minimal Rp " << data.sisaBulanan * 0.5 << endl;
     } else {
         cout << "Ayo Faiz Pengeluaran kamu bulan ini harus dikurangi lagi!" << endl;
     }
+
 }
 
 void tampilkanRiwayat() {
@@ -43,11 +54,13 @@ void tampilkanRiwayat() {
     if (file.is_open()) {
         string bulan;
         int tahun;
-        float UangBulanan, pengeluaranBulanan, sisa;
+        float uangBulanan, pengeluaranBulanan, sisa, jumlahPengeluaran1, jumlahPengeluaran2;
+        string jenisPengeluaran1, jenisPengeluaran2;
         cout << "\n=== Riwayat Keuangan Bulanan Faiz ===" << endl;
-        while (file >> bulan >> tahun >> UangBulanan >> pengeluaranBulanan >> sisa) {
-            cout << bulan << " " << tahun << " || " << "Uang Bulanan : Rp " << UangBulanan << " || " << "Pengeluaran Bulanan : Rp " << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa << endl;
-        }
+    while (file >> bulan >> tahun >> uangBulanan >> pengeluaranBulanan >> sisa >> jenisPengeluaran1 ) {
+        cout << bulan << " " << tahun << " || " << "Uang Bulanan : Rp " << uangBulanan << " || " << "Pengeluaran Bulanan : Rp " << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa
+        << " || " << " Jenis Pengeluaran 1 : " << jenisPengeluaran1 << " Rp." << jumlahPengeluaran1 << " || " << " Jenis Pengeluaran 2 : " << jenisPengeluaran2 << " Rp." << jumlahPengeluaran2 << endl;
+    }
         file.close();
     } else {
         cout << "Belum ada data keuangan kamu yang tersimpan." << endl;
@@ -57,13 +70,14 @@ void meresetDataKeuangan() {
     ofstream file("data_uang.txt", ios::trunc);
     if (file.is_open()) {
         file.close();
-        cout << "Semua data keuangan berhasil di-reset." << endl;
+        cout << "Semua data keuangan anda telah dihapus." << endl;
     } else {
         cout << "Gagal mengakses file untuk reset data." << endl;
     }
 }
 
 int main() {
+// Sebelum masuk ke program diharapkan untuk memasukan pin terlebih dahulu
     string pin;
     const string pinBenar = "009987";
     int percobaan = 0;
@@ -76,7 +90,7 @@ int main() {
         if(pin == pinBenar){
             cout << "YEAY PIN ANDA BENAR, SILAHKAN MASUK" <<endl;
             break;
-        } else {
+        } else { 
             percobaan++;
             cout << "PIN YANG ANDA MASUKAN 'SALAH', HARAP MASUKAN DENGAN TELITI" <<endl;
             if(percobaan < maksPercobaan){
@@ -89,8 +103,9 @@ int main() {
     }
     cout << fixed << setprecision(2);
 
-    int pilihanMenu;
-    char lanjut;
+    // Awal untuk Memilih pilihan Menu
+    int pilihMenu;
+    char lanjutkan;
     
     do{
     cout << "-------------------------------------------------" <<endl;
@@ -104,36 +119,52 @@ int main() {
     cout << "|  4. Keluar dari Program                       |" <<endl;
     cout << "|                                               |" <<endl;
     cout << "|  Pilih Menu (1-4) : ";     
-    cin >> pilihanMenu;                                      
+    cin >> pilihMenu;                                      
     cout << "-------------------------------------------------" <<endl;
 
-
-    if(pilihanMenu == 1){
+// Memasukan nama bulan apa dan tahun berapa, untuk dicatat lalu disimpan kedalam file
+    if(pilihMenu == 1){
         Keuangan data;
-        cout << "\nSelamat Datang, Faiz! catat keuangan Faiz bulan ini!." << endl;
+        cout << "\nSelamat Datang, Faiz! jangan lupa catat keuanganmu bulan ini!." << endl;
 
         cout << "Masukkan nama bulan (Contoh : Juni) : ";
         cin >> data.bulan;
 
-        cout << "Masukkan tahun (Contoh : 2025): ";
+        cout << "Masukkan tahun (Contoh : 2025) : ";
         cin >> data.tahun;
+        
+        cout << "Masukan jenis pengeluaran 1 : ";
+        cin >> data.namaPengeluaran1;
+        cout << "Masukan Jumlah Pengeluaran 1 : ";
+        cin >> data.jumlahPengeluaran1;
+
+        cout << "Masukan jenis pengeluaran 2 : ";
+        cin >> data.namaPengeluaran2;
+        cout << "Masukan Jumlah Pengeluaran 2 : ";
+        cin >> data.jumlahPengeluaran2;
+
+        
+        data.pengeluaranBulanan = data.jumlahPengeluaran1 + data.jumlahPengeluaran2;
+
 
         cout << "Masukkan total uang bulanan pada bulan " << data.bulan << " (Rp) : ";
-        cin >> data.UangBulanan;
+        cin >> data.uangBulanan;
 
         cout << "Masukkan total pengeluaran bulan " << data.bulan << " (Rp) : ";
         cin >> data.pengeluaranBulanan;
 
 
-        data.sisaBulanan = data.UangBulanan - data.pengeluaranBulanan;
+        data.sisaBulanan = data.uangBulanan - data.pengeluaranBulanan;
 
         tampilkanRingkasan(data);
         menyimpanData(data);
 
-    } else if (pilihanMenu == 2){
+// Menampilkan riwayat yang udah dimasukan pada catatan
+    } else if (pilihMenu == 2){
         tampilkanRiwayat();
 
-    } else if (pilihanMenu == 3){
+// Menghapus catat supaya kalau catat ditahun yang bagus bisa lebih terlihat rapih
+    } else if (pilihMenu == 3){
         char konfirmasi;
         cout << "Anda yakin ingin menghapus SEMUA data keuangan? (yakin/tidak) : ";
         cin >> konfirmasi;
@@ -144,18 +175,19 @@ int main() {
         cout << "Konfirmasi dibatalkan." <<endl;
     }
     
-    } else if (pilihanMenu == 4){
+// Akhir program
+    } else if (pilihMenu == 4){
         cout << "Terima kasih telah menggunakan pengelola keuangan." <<endl;
         break;
     } else {
-        cout << "pilihan anda tidak valid, pilih yang 1-4 saja." <<endl;
+        cout << "pilihan anda tidak valid, pilih yang 1-5 saja." <<endl;
     }
     cout <<endl;
 
     cout << "Apakah anda ingin memilih pilihan lain yang ada pada menu? (iya/tidak) : ";
-    cin >> lanjut;
+    cin >> lanjutkan;
 
-    } while (lanjut == 'y' || lanjut == 'Y');
+    } while (lanjutkan == 'y' || lanjutkan == 'Y');
 
     return 0;
 }
