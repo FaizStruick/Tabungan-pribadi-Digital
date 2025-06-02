@@ -31,8 +31,8 @@ void tampilkanRingkasan(const Keuangan& data) {
     cout << "Uang Bulanan         : Rp "  << data.uangBulanan << endl;
     cout << "Pengeluaran Bulanan  : Rp "  << data.pengeluaranBulanan << endl;
     cout << "Sisa Uang Bulanan    : Rp "  << data.sisaBulanan << endl;
-    cout << "Jenis Pengeluaran 1   : " << data.namaPengeluaran1 << " Rp " << data.jumlahPengeluaran1 <<endl;
-    cout << "Jenis Pengeluaran 2   : " << data.namaPengeluaran2 << " Rp " << data.jumlahPengeluaran2 <<endl;
+    cout << "Jenis Pengeluaran 1   : " "[" << data.namaPengeluaran1 << "]" << " Rp " << data.jumlahPengeluaran1 <<endl;
+    cout << "Jenis Pengeluaran 2   : " "[" << data.namaPengeluaran2 << "]" << " Rp " << data.jumlahPengeluaran2 <<endl;
 
 
     if (data.sisaBulanan > 600000) {
@@ -177,7 +177,7 @@ int main() {
     
 // Akhir program
     } else if (pilihMenu == 4){
-        cout << "Terima kasih telah menggunakan pengelola keuangan." <<endl;
+        cout << "Terima kasih sudah menggunakan pengelola keuangan." <<endl;
         break;
     } else {
         cout << "pilihan anda tidak valid, pilih yang 1-5 saja." <<endl;
