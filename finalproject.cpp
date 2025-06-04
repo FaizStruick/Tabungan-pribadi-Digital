@@ -33,8 +33,9 @@ void tampilkanRingkasan(const Keuangan& data) {
     cout << "\n ---- Ringkasan Keuangan bulanan Faiz Bulan " << data.bulan << " " << data.tahun << " ----" << endl;
     cout << "Uang Bulanan            : Rp "  << data.uangBulanan << endl;
     cout << "Pengeluaran Bulanan     : Rp "  << data.pengeluaranBulanan << endl;
-    cout << "Ringkasan Pengeluaran   : "<< data.ringkasanPengeluaran <<endl;
+    cout << "Ringkasan Pengeluaran   :" << data.ringkasanPengeluaran <<endl;
     cout << "Sisa Uang Bulanan       : Rp "  << data.sisaBulanan << endl;
+    cout << "----------------------------------------------------------" <<endl;
 
 
     if (data.sisaBulanan > 600000) {
@@ -46,7 +47,7 @@ void tampilkanRingkasan(const Keuangan& data) {
     } else if (data.sisaBulanan > 0) {
         cout << "Harus tetap hemat ya Faiz!, usahakan menabung minimal Rp " << data.sisaBulanan * 0.5 << endl;
     } else {
-        cout << "Ayo Faiz Pengeluaran kamu bulan ini harus dikurangi lagi!" << endl;
+        cout << "Faiz Pengeluaran mu bulan ini banyak, harus dikurangi lagi!" << endl;
     }
 
 }
@@ -117,6 +118,7 @@ int main() {
     cout << "|-----------------------------------------------|" <<endl;
     cout << "|  1. Catatan Keuangan Bulanan                  |" <<endl;
     cout << "|  2. Lihat Riwayat Keuangan Bulanan            |" <<endl;
+    cout << "|  3. Pengeluaran Terbanyak                     |" <<endl;
     cout << "|  3. Reset Semua Data Keuangan                 |" <<endl;
     cout << "|  4. Keluar dari Program                       |" <<endl;
     cout << "|                                               |" <<endl;
@@ -141,7 +143,7 @@ int main() {
         cout << endl;
 
         int jumlahJenis;
-        cout << "Masukan total jumlah jenis pengeluaran : ";
+        cout << "Masukan jumlah jenis pengeluaran bulan " << data.bulan << " : ";
         cin >> jumlahJenis;
 
         data.ringkasanPengeluaran = " ";
