@@ -104,8 +104,10 @@ void pengeluaranTerbanyak(const vector<Keuangan> & semuaData){
        }
     }
     cout << fixed << setprecision(2);
-    cout << "Pengeluaran terbesar pada bulan " << terbesar->bulan << " " << terbesar->tahun <<endl;
-    cout << "Total pengeluaran terbanyaknya Rp. : " << terbesar->pengeluaranBulanan <<endl;
+    cout << "----- Pengeluaran Terbanyak Faiz ----------------\n";
+    cout << "| Pengeluaran terbesar pada bulan " << terbesar->bulan << " " << terbesar->tahun <<endl;
+    cout << "| Total pengeluaran terbanyaknya Rp. : " << terbesar->pengeluaranBulanan <<endl;
+    cout << "-------------------------------------------------"<<endl;
 }
 int main() {
 // Sebelum masuk ke program diharapkan untuk memasukan pin terlebih dahulu
@@ -171,7 +173,7 @@ int main() {
         cout << endl;
 
         int jumlahJenis;
-        cout << "Masukan jumlah jenis pengeluaran bulan " << data.bulan << " : ";
+        cout << "Masukan ada berapa jenis pengeluaran di bulan " << data.bulan << " : ";
         cin >> jumlahJenis;
 
         data.ringkasanPengeluaran = " ";
@@ -184,7 +186,7 @@ int main() {
         cout << "Nama pengeluaran ke-" << i+1 << " : ";
         cin >> jenis;
 
-        cout << "Jumlah pengeluaran pada [" << jenis << "] :Rp.";
+        cout << "Jumlah pengeluaran pada [" << jenis << "] : Rp.";
         cin >> jumlah;
 
         totalPengeluaran += jumlah;
