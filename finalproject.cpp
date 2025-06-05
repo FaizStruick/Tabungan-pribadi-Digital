@@ -14,16 +14,16 @@ struct Keuangan {
     float pengeluaranBulanan;
     float sisaBulanan;
     string ringkasanPengeluaran;
-
 };
 vector<string> jenisPengeluaran;
 vector<float> jumlahPengeluaran;
-
+vector<Keuangan> semuaData;
 
 void menyimpanData(const Keuangan& data) {
     ofstream file("data_uang.txt", ios::app);
     if (file.is_open()) {
-        file << data.bulan << " " << data.tahun << " " << data.uangBulanan << " " << data.pengeluaranBulanan << " " << data.sisaBulanan << " " << data.ringkasanPengeluaran << endl;
+        file << data.bulan << " " << data.tahun << " " << data.uangBulanan << " " << data.pengeluaranBulanan 
+        << " " << data.sisaBulanan << " " << data.ringkasanPengeluaran << endl;
         file.close();
     } else {
         cout << " Yah gagal menyimpan data ke file." << endl;
@@ -49,9 +49,7 @@ void tampilkanRingkasan(const Keuangan& data) {
     } else {
         cout << "Faiz Pengeluaran mu bulan ini banyak, harus dikurangi lagi!" << endl;
     }
-
 }
-
 void tampilkanRiwayat() {
     ifstream file("data_uang.txt");
     if (file.is_open()) {
@@ -69,16 +67,46 @@ void tampilkanRiwayat() {
         cout << "Belum ada data keuangan kamu yang tersimpan." << endl;
     }
 }
+// untuk fungsi ini saya bisa mereset keuangan tujuannya supaya filenya bisa lebih rapih dan tidak tercampur dengan tahun depan
 void meresetDataKeuangan() {
     ofstream file("data_uang.txt", ios::trunc);
     if (file.is_open()) {
         file.close();
         cout << "Semua data keuangan anda telah dihapus." << endl;
     } else {
-        cout << "Gagal mengakses file untuk reset data." << endl;
+        cout << "Gagal mengakses file untuk mereset data." << endl;
     }
 }
+// Nah untuk membaca file ini, saya mengambil datanya dari file data_uang.txt sudah sudah saya disimpan pada fungsi di atas
+void MembacaFile(vector <Keuangan>& semuaData, const string& namafile){
+     ifstream file(namafile);
+    if (!file) {
+        cout << "Gagal membuka file: data_uang.txt " << endl;
+        return;
+    }
+    Keuangan data;
+    while (file >> data.bulan >> data.tahun >> data.pengeluaranBulanan) {
+        semuaData.push_back(data);
+    }
+    file.close();
+}
+// Fungsi dari fungsi Pengeluaran terbanyak ini jadi saya lebih tau pengeluaran terbanyak saya di bulan apa dan tahun berapa
+void pengeluaranTerbanyak(const vector<Keuangan> & semuaData){
+    if(semuaData.empty()){
+        cout << "Belum ada pengeluaran";
+        return;
+    }
+    const Keuangan* terbesar = &semuaData[0];
 
+    for(const auto& data : semuaData){
+       if(data.pengeluaranBulanan > terbesar->pengeluaranBulanan){
+        terbesar = &data;
+       }
+    }
+    cout << fixed << setprecision(2);
+    cout << "Pengeluaran terbesar pada bulan " << terbesar->bulan << " " << terbesar->tahun <<endl;
+    cout << "Total pengeluaran terbanyaknya Rp. : " << terbesar->pengeluaranBulanan <<endl;
+}
 int main() {
 // Sebelum masuk ke program diharapkan untuk memasukan pin terlebih dahulu
     string pin;
@@ -118,11 +146,11 @@ int main() {
     cout << "|-----------------------------------------------|" <<endl;
     cout << "|  1. Catatan Keuangan Bulanan                  |" <<endl;
     cout << "|  2. Lihat Riwayat Keuangan Bulanan            |" <<endl;
-    cout << "|  3. Pengeluaran Terbanyak                     |" <<endl;
-    cout << "|  3. Reset Semua Data Keuangan                 |" <<endl;
-    cout << "|  4. Keluar dari Program                       |" <<endl;
+    cout << "|  3. Pengeluaran Terbanyak Faiz                |" <<endl;
+    cout << "|  4. Reset Semua Data Keuangan                 |" <<endl;
+    cout << "|  5. Keluar dari Program                       |" <<endl;
     cout << "|                                               |" <<endl;
-    cout << "|  Pilih Menu (1-4) : ";     
+    cout << "|  Pilih Menu (1-5) : ";     
     cin >> pilihMenu;                                      
     cout << "-------------------------------------------------" <<endl;
 
@@ -162,7 +190,7 @@ int main() {
         totalPengeluaran += jumlah;
         stringstream ss;
         ss << fixed << setprecision(2) << jumlah;
-        data.ringkasanPengeluaran += jenis + " : " + ss.str() + " ";
+        data.ringkasanPengeluaran += jenis + " : " + ss.str() + ", ";
         }
         
         data.pengeluaranBulanan = totalPengeluaran;
@@ -175,10 +203,15 @@ int main() {
     } else if (pilihMenu == 2){
         tampilkanRiwayat();
 
-// Menghapus catat supaya kalau catat ditahun yang bagus bisa lebih terlihat rapih
     } else if (pilihMenu == 3){
+        vector <Keuangan> semuaData;
+        MembacaFile(semuaData, "data_uang.txt");
+        pengeluaranTerbanyak(semuaData);
+
+// Menghapus catat supaya kalau catat ditahun yang bagus bisa lebih terlihat rapih
+    } else if (pilihMenu == 4){
         char konfirmasi;
-        cout << "Anda yakin ingin menghapus SEMUA data keuangan? (yakin/tidak) : ";
+        cout << "Anda yakin ingin menghapus 'SEMUA' data keuangan? (yakin/tidak) : ";
         cin >> konfirmasi;
             
     if (konfirmasi == 'y' || konfirmasi == 'Y') {
@@ -187,8 +220,8 @@ int main() {
         cout << "Konfirmasi batal." <<endl;
     }
     
-// Akhir program
-    } else if (pilihMenu == 4){
+// Akhir dari program
+    } else if (pilihMenu == 5){
         cout << "Terima kasih sudah menggunakan pengelola keuangan." <<endl;
         break;
     } else {

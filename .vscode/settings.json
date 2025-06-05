@@ -2,5 +2,6 @@
   "files.associations": {
     "*.1cpp": "cpp",
     "iostream": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
