@@ -95,7 +95,11 @@ void TargetNabung(const Keuangan&data, float targetMenabungBulanan){
     
     targetMenabungBulanan = 400.000;
 
-    if ( )
+    if ( jumlahPengeluaran < targetMenabungBulanan ){
+        cout << "Selamat target anda tercapai pertahankan" <<endl;
+    } else {
+        cout << "Target anda belum tercapai" <<endl;
+    }
 }
 // Fungsi dari fungsi Pengeluaran terbanyak ini jadi saya lebih tau pengeluaran terbanyak saya di bulan apa dan tahun berapa
 void pengeluaranTerbanyak(const vector<Keuangan> & semuaData){
@@ -218,8 +222,11 @@ int main() {
         MembacaFile(semuaData, "data_uang.txt");
         pengeluaranTerbanyak(semuaData);
 
-// Menghapus catat supaya kalau catat ditahun yang bagus bisa lebih terlihat rapih
     } else if (pilihMenu == 4){
+        TargetNabung();
+
+// Menghapus catat supaya kalau catat ditahun yang bagus bisa lebih terlihat rapih
+    } else if (pilihMenu == 5){
         char konfirmasi;
         cout << "Anda yakin ingin menghapus 'SEMUA' data keuangan? (yakin/tidak) : ";
         cin >> konfirmasi;
@@ -231,7 +238,7 @@ int main() {
     }
     
 // Akhir dari program
-    } else if (pilihMenu == 5){
+    } else if (pilihMenu == 6){
         cout << "Terima kasih sudah menggunakan pengelola keuangan." <<endl;
         break;
     } else {
