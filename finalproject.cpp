@@ -91,11 +91,12 @@ void MembacaFile(vector <Keuangan>& semuaData, const string& namafile){
     }
     file.close();
 }
-void TargetNabung(const Keuangan&data, float targetMenabungBulanan){
+void TargetNabung(const Keuangan&data){
     
-    targetMenabungBulanan = 400.000;
+    cout << "Masukan pengeluaran Bulan " << data.bulan << " : ";
+    cin >> jumlahPengeluaran;
 
-    if ( jumlahPengeluaran < targetMenabungBulanan ){
+    if ( 400.000 <= data.targetMenabung ){
         cout << "Selamat target anda tercapai pertahankan" <<endl;
     } else {
         cout << "Target anda belum tercapai" <<endl;
