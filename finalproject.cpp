@@ -14,6 +14,7 @@ struct Keuangan {
     float pengeluaranBulanan;
     float sisaBulanan;
     string ringkasanPengeluaran;
+    float targetMenabung;
 };
 vector<string> jenisPengeluaran;
 vector<float> jumlahPengeluaran;
@@ -90,6 +91,12 @@ void MembacaFile(vector <Keuangan>& semuaData, const string& namafile){
     }
     file.close();
 }
+void TargetNabung(const Keuangan&data, float targetMenabungBulanan){
+    
+    targetMenabungBulanan = 400.000;
+
+    if ( )
+}
 // Fungsi dari fungsi Pengeluaran terbanyak ini jadi saya lebih tau pengeluaran terbanyak saya di bulan apa dan tahun berapa
 void pengeluaranTerbanyak(const vector<Keuangan> & semuaData){
     if(semuaData.empty()){
@@ -149,10 +156,11 @@ int main() {
     cout << "|  1. Catatan Keuangan Bulanan                  |" <<endl;
     cout << "|  2. Lihat Riwayat Keuangan Bulanan            |" <<endl;
     cout << "|  3. Pengeluaran Terbanyak Faiz                |" <<endl;
-    cout << "|  4. Reset Semua Data Keuangan                 |" <<endl;
-    cout << "|  5. Keluar dari Program                       |" <<endl;
+    cout << "|  4. Target Menabung Bulanan                   |" <<endl;
+    cout << "|  5. Reset Semua Data Keuangan                 |" <<endl;
+    cout << "|  6. Keluar dari Program                       |" <<endl;
     cout << "|                                               |" <<endl;
-    cout << "|  Pilih Menu (1-5) : ";     
+    cout << "|  Pilih Menu (1-6) : ";     
     cin >> pilihMenu;                                      
     cout << "-------------------------------------------------" <<endl;
 
