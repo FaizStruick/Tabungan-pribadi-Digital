@@ -15,7 +15,6 @@ struct Keuangan {
     float sisaBulanan;
     string ringkasanPengeluaran;
     float targetMenabung;
-    double pengeluaranBulanIni;
 };
 vector<string> jenisPengeluaran;
 vector<float> jumlahPengeluaran;
@@ -97,7 +96,7 @@ void targetMenabung(Keuangan& data){
     cout << "Masukan pengeluaran bulan " << data.bulan << " : ";
     cin >> data.pengeluaranBulanan;
 
-    if ( data.pengeluaranBulanan => data.targetMenabung ){
+    if ( data.pengeluaranBulanan > data.targetMenabung ){
         cout << "Selamat target anda tercapai pertahankan" <<endl;
     } else {
         cout << "Target anda belum tercapai" <<endl;
@@ -227,7 +226,7 @@ int main() {
     } else if (pilihMenu == 4){
         Keuangan data;
         
-        cout << "Masukan nama bulan ";
+        cout << "Masukan nama bulan : ";
         cin >> data.bulan;
 
         cout << "Target nabung bulan " << data.bulan << " berapa? Rp.";
