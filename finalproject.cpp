@@ -92,12 +92,12 @@ void MembacaFile(vector <Keuangan>& semuaData, const string& namafile){
     }
     file.close();
 }
-void targetMenabung(const Keuangan& data){
+void targetMenabung(Keuangan& data){
 
     cout << "Masukan pengeluaran bulan " << data.bulan << " : ";
-    cin >> data.pengeluaranBulanIni;
+    cin >> data.pengeluaranBulanan;
 
-    if ( data.pengeluaranBulanIni > 4000000 ){
+    if ( data.pengeluaranBulanan => data.targetMenabung ){
         cout << "Selamat target anda tercapai pertahankan" <<endl;
     } else {
         cout << "Target anda belum tercapai" <<endl;
@@ -225,12 +225,15 @@ int main() {
         pengeluaranTerbanyak(semuaData);
 
     } else if (pilihMenu == 4){
-        string pengeluaranBulanIni;;
+        Keuangan data;
         
         cout << "Masukan nama bulan ";
-        cin >> pengeluaranBulanIni;
+        cin >> data.bulan;
 
-        targetMenabung(pengeluranBulanIni);
+        cout << "Target nabung bulan " << data.bulan << " berapa? Rp.";
+        cin >> data.targetMenabung;
+
+        targetMenabung(data);
 
 // Menghapus catat supaya kalau catat ditahun yang bagus bisa lebih terlihat rapih
     } else if (pilihMenu == 5){
