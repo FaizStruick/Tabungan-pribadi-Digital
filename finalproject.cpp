@@ -93,11 +93,11 @@ void MembacaFile(vector <Keuangan>& semuaData, const string& namafile){
 }
 void targetMenabung(Keuangan& data){
 
-    cout << "Masukan pengeluaran bulan " << data.bulan << " : ";
+    cout << "Masukan pengeluaran bulan " << data.bulan << " : Rp.";
     cin >> data.pengeluaranBulanan;
 
     if ( data.pengeluaranBulanan > data.targetMenabung ){
-        cout << "Selamat target anda tercapai pertahankan" <<endl;
+        cout << "Target anda sudah tercapai yang sudah ditentukan" <<endl;
     } else {
         cout << "Target anda belum tercapai" <<endl;
     }
@@ -226,11 +226,11 @@ int main() {
     } else if (pilihMenu == 4){
         Keuangan data;
         
-        cout << "---- Target Pada Bulanan Faiz ----\n";
+        cout << "---- Target Bulanan Faiz ----\n";
         cout << "Masukan nama bulan : ";
         cin >> data.bulan;
 
-        cout << "Target nabung bulan " << data.bulan << " berapa? Rp.";
+        cout << "Masukan target nabung bulan " << data.bulan << " mau berapa? Rp.";
         cin >> data.targetMenabung;
 
         targetMenabung(data);
