@@ -48,7 +48,7 @@ void tampilkanRingkasan(const Keuangan& data) {
     } else if (data.sisaBulanan > 0) {
         cout << "Harus tetap hemat ya Faiz!, usahakan menabung minimal Rp " << data.sisaBulanan * 0.5 << endl;
     } else {
-        cout << "Faiz Pengeluaran mu bulan ini banyak, harus dikurangi lagi!" << endl;
+        cout << "Faiz Pengeluaranmu bulan ini banyak, harus dikurangi lagi!" << endl;
     }
 }
 void tampilkanRiwayat() {
@@ -91,6 +91,7 @@ void MembacaFile(vector <Keuangan>& semuaData, const string& namafile){
     }
     file.close();
 }
+// Kegunaan dari target ini, saya pribadi bisa lebih menargetkan barang apa yang mungkin saya ingin dibeli
 void targetMenabung(Keuangan& data){
 
     cout << "Masukan pengeluaran bulan " << data.bulan << " : Rp.";
@@ -192,7 +193,7 @@ int main() {
         data.ringkasanPengeluaran = " ";
         float totalPengeluaran = 0;
 
-        for(int i = 0; i < jumlahJenis; i++){
+        for( int i = 0; i < jumlahJenis; i++){
             string jenis;
             float jumlah;
 
@@ -230,7 +231,7 @@ int main() {
         cout << "Masukan nama bulan : ";
         cin >> data.bulan;
 
-        cout << "Masukan target nabung bulan " << data.bulan << " mau berapa? Rp.";
+        cout << "Masukan target nabung bulan " << data.bulan << ", mau berapa ? Rp.";
         cin >> data.targetMenabung;
 
         targetMenabung(data);
