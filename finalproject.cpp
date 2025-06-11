@@ -226,6 +226,7 @@ int main() {
     } else if (pilihMenu == 4){
         Keuangan data;
         
+        cout << "---- Target Pada Bulanan Faiz ----\n";
         cout << "Masukan nama bulan : ";
         cin >> data.bulan;
 
