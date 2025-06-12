@@ -20,7 +20,7 @@ vector<string> jenisPengeluaran;
 vector<float> jumlahPengeluaran;
 vector<Keuangan> semuaData;
 
-void menyimpanData(const Keuangan& data) {
+void menyimpanData(const Keuangan& data){
     ofstream file("data_uang.txt", ios::app);
     if (file.is_open()) {
         file << data.bulan << " " << data.tahun << " " << data.uangBulanan << " " << data.pengeluaranBulanan 
@@ -30,7 +30,7 @@ void menyimpanData(const Keuangan& data) {
         cout << " Yah gagal menyimpan data ke file." << endl;
     }
 }
-void tampilkanRingkasan(const Keuangan& data) {
+void tampilkanRingkasan(const Keuangan& data){
     cout << "\n ---- Ringkasan Keuangan bulanan Faiz Bulan " << data.bulan << " " << data.tahun << " ----" << endl;
     cout << "Uang Bulanan            : Rp "  << data.uangBulanan << endl;
     cout << "Pengeluaran Bulanan     : Rp "  << data.pengeluaranBulanan << endl;
@@ -60,8 +60,8 @@ void tampilkanRiwayat() {
         string ringkasanKeuangan;
         cout << "\n=== Riwayat Keuangan Bulanan Faiz ===" << endl;
     while (file >> bulan >> tahun >> uangBulanan >> pengeluaranBulanan >> sisa >> ringkasanKeuangan ) {
-        cout << bulan << " " << tahun << " || " << "Uang Bulanan : Rp " << uangBulanan << " || " << "Pengeluaran Bulanan : Rp " << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa
-        << " || " << " Ringkasan Pengeluaran : " << ringkasanKeuangan << endl;
+        cout << bulan << " " << tahun << " || " << "Uang Bulanan : Rp " << uangBulanan << " || " << "Pengeluaran Bulanan : Rp " 
+        << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa << " || " << " Ringkasan Pengeluaran : " << ringkasanKeuangan << endl;
     }
         file.close();
     } else {
@@ -147,6 +147,7 @@ int main() {
             }
         }
     }
+    // Fungsi dari fixed ini supaya bilangan bulat di rupiahya nol nya 2
     cout << fixed << setprecision(2);  
 
     // Awal untuk Memilih pilihan Menu
@@ -170,7 +171,7 @@ int main() {
     cin >> pilihMenu;                                      
     cout << "-------------------------------------------------" <<endl;
 
-// Memasukan nama bulan apa dan tahun berapa, untuk dicatat lalu disimpan kedalam file
+// Memasukan nama bulan apa dan tahun berapa, untuk dicatat lalu disimpan ke dalam file
     if(pilihMenu == 1){
         Keuangan data;
         cout << "\nSelamat Datang, Faiz! jangan lupa catat keuanganmu bulan ini!." << endl;
@@ -253,7 +254,7 @@ int main() {
         cout << "Terima kasih sudah menggunakan pengelola keuangan." <<endl;
         break;
     } else {
-        cout << "pilihan anda tidak valid, pilih yang 1-5 saja." <<endl;
+        cout << "pilihan anda tidak valid, pilih yang 1-6 saja." <<endl;
     }
     cout <<endl;
 
