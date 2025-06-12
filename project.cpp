@@ -16,6 +16,7 @@ struct Keuangan {
     string ringkasanPengeluaran;
     float targetMenabung;
 };
+// alasan untuk menggunakan vector karena datanya mengambil  dari file data_uang.txt
 vector<string> jenisPengeluaran;
 vector<float> jumlahPengeluaran;
 vector<Keuangan> semuaData;
@@ -79,7 +80,7 @@ void meresetDataKeuangan() {
     }
 }
 // Nah untuk membaca file ini, saya mengambil datanya dari file data_uang.txt sudah sudah saya disimpan pada fungsi di atas
-void MembacaFile(vector <Keuangan>& semuaData, const string& namafile){
+void membacaFile(vector <Keuangan>& semuaData, const string& namafile){
      ifstream file(namafile);
     if (!file) {
         cout << "Gagal membuka file: data_uang.txt " << endl;
@@ -188,7 +189,9 @@ int main() {
         cout << endl;
 
         int jumlahJenis;
-        cout << "Masukan ada berapa jenis pengeluaran di bulan " << data.bulan << " : ";
+        cout << "--- Jenis - jenis Pengeluaran ---\n";
+        
+        cout << "Masukan jumlah jenis pengeluaran pada bulan " << data.bulan << " : ";
         cin >> jumlahJenis;
 
         data.ringkasanPengeluaran = " ";
@@ -222,7 +225,7 @@ int main() {
 
     } else if (pilihMenu == 3){
         vector <Keuangan> semuaData;
-        MembacaFile(semuaData, "data_uang.txt");
+        membacaFile(semuaData, "data_uang.txt");
         pengeluaranTerbanyak(semuaData);
 
     } else if (pilihMenu == 4){
