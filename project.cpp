@@ -32,7 +32,7 @@ void menyimpanData(const Keuangan& data){
     }
 }
 void tampilkanRingkasan(const Keuangan& data){
-    cout << "\n ---- Ringkasan Keuangan bulanan Faiz Bulan " << data.bulan << " " << data.tahun << " ----" << endl;
+    cout << "\n ---- Ringkasan Keuangan bulanan Faiz, Bulan " << data.bulan << " " << data.tahun << " ----" << endl;
     cout << "Uang Bulanan            : Rp "  << data.uangBulanan << endl;
     cout << "Pengeluaran Bulanan     : Rp "  << data.pengeluaranBulanan << endl;
     cout << "Ringkasan Pengeluaran   :" << data.ringkasanPengeluaran <<endl;
