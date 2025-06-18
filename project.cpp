@@ -16,7 +16,7 @@ struct Keuangan {
     string ringkasanPengeluaran;
     float targetMenabung;
 };
-// alasan untuk menggunakan vector karena datanya mengambil  dari file data_uang.txt
+// alasan untuk menggunakan vector karena ada data yang mengambil dari file (data_uang.txt)
 vector<string> jenisPengeluaran;
 vector<float> jumlahPengeluaran;
 vector<Keuangan> semuaData;
@@ -45,11 +45,11 @@ void tampilkanRingkasan(const Keuangan& data){
     } else if (data.sisaBulanan > 400000) {
         cout << "Faiz kamu disarankan untuk menabung minimal Rp 300.000 pada bulan ini!" <<endl;
     } else if (data.sisaBulanan > 50000) {
-        cout << "Hati-hati Faiz keuanganmu hampir menipis, pengeluarannya lebih dikurangi lagi" <<endl;
+        cout << "keuanganmu hampir menipis, pengeluarannya sedikit dikurangi lagi" <<endl;
     } else if (data.sisaBulanan > 0) {
-        cout << "Harus tetap hemat ya Faiz!, usahakan menabung minimal Rp " << data.sisaBulanan * 0.5 << endl;
+        cout << "Harus tetap hemat ya!, usahakan menabung minimal Rp " << data.sisaBulanan * 0.5 << endl;
     } else {
-        cout << "Faiz Pengeluaranmu bulan ini banyak, harus dikurangi lagi!" << endl;
+        cout << "Pengeluaranmu bulan ini melewati batas, dikurangi lagi!" << endl;
     }
 }
 void tampilkanRiwayat() {
@@ -58,11 +58,11 @@ void tampilkanRiwayat() {
         string bulan;
         int tahun;
         float uangBulanan, pengeluaranBulanan, sisa;
-        string ringkasanKeuangan;
+        string ringkasanKeuangan, jenis;
         cout << "\n=== Riwayat Keuangan Bulanan Faiz ===" << endl;
-    while (file >> bulan >> tahun >> uangBulanan >> pengeluaranBulanan >> sisa >> ringkasanKeuangan ) {
+    while (file >> bulan >> tahun >> uangBulanan >> pengeluaranBulanan >> sisa >> jenis ) {
         cout << bulan << " " << tahun << " || " << "Uang Bulanan : Rp " << uangBulanan << " || " << "Pengeluaran Bulanan : Rp " 
-        << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa << " || " << " Ringkasan Pengeluaran : " << ringkasanKeuangan << endl;
+        << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa << " || " << " Ringkasan Pengeluaran : " << jenis << endl;
     }
         file.close();
     } else {
@@ -118,6 +118,7 @@ void pengeluaranTerbanyak(const vector<Keuangan> & semuaData){
        }
     }
     cout << fixed << setprecision(2);
+
     cout << "----- Pengeluaran Terbanyak Faiz ----------------\n";
     cout << "| Pengeluaran terbesar pada bulan " << terbesar->bulan << " " << terbesar->tahun <<endl;
     cout << "| Total pengeluaran terbanyaknya Rp. : " << terbesar->pengeluaranBulanan <<endl;
@@ -139,11 +140,11 @@ int main() {
             break;
         } else { 
             percobaan++;
-            cout << "PIN YANG ANDA MASUKAN 'SALAH', HARAP MASUKAN DENGAN TELITI" <<endl;
+            cout << "PIN YANG ANDA MASUKAN 'SALAH', MASUKAN PIN DENGAN TELITI" <<endl;
             if(percobaan < maksPercobaan){
                 cout << "Silahkan coba lagi, percobaan anda tersisa : " << maksPercobaan - percobaan << " lagi." <<endl;
             } else {
-                cout << "Anda sudah melewati batas percobaan sebanyak " << maksPercobaan << " kali, Anda tidak bisa mengakses tabungan ini." <<endl;
+                cout << "Anda sudah melewati batas percobaan sebanyak " << maksPercobaan << " kali, anda tidak bisa mengakses tabungan ini." <<endl;
                 return 0;
             }
         }
@@ -175,7 +176,7 @@ int main() {
 // Memasukan nama bulan apa dan tahun berapa, untuk dicatat lalu disimpan ke dalam file
     if(pilihMenu == 1){
         Keuangan data;
-        cout << "\nSelamat Datang, Faiz! jangan lupa catat keuanganmu bulan ini!." << endl;
+        cout << "\n Hallo Faiz! jangan lupa catat keuanganmu bulan ini!." << endl;
 
         cout << "Masukkan nama bulan (Contoh : Juni) : ";
         cin >> data.bulan;
@@ -191,7 +192,7 @@ int main() {
         int jumlahJenis;
         cout << "--- Jenis - jenis Pengeluaran ---\n";
         
-        cout << "Masukan jumlah jenis pengeluaran pada bulan " << data.bulan << " : ";
+        cout << "Ada berapa jenis pengeluaran pada bulan " << data.bulan << " : ";
         cin >> jumlahJenis;
 
         data.ringkasanPengeluaran = " ";
@@ -212,7 +213,7 @@ int main() {
         ss << fixed << setprecision(2) << jumlah;
         data.ringkasanPengeluaran += jenis + " : " + ss.str() + ", ";
         }
-        
+
         data.pengeluaranBulanan = totalPengeluaran;
         data.sisaBulanan = data.uangBulanan - data.pengeluaranBulanan;
 
