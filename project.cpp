@@ -39,7 +39,6 @@ void tampilkanRingkasan(const Keuangan& data){
     cout << "Sisa Uang Bulanan       : Rp "  << data.sisaBulanan << endl;
     cout << "----------------------------------------------------------" <<endl;
 
-
     if (data.sisaBulanan > 600000) {
         cout << "Faiz disarankan untuk menabung minimal Rp 400.000 pada bulan ini!" << endl;
     } else if (data.sisaBulanan > 400000) {
