@@ -61,7 +61,7 @@ void tampilkanRiwayat() {
         cout << "\n=== Riwayat Keuangan Bulanan Faiz ===" << endl;
     while (file >> bulan >> tahun >> uangBulanan >> pengeluaranBulanan >> sisa >> jenis ) {
         cout << bulan << " " << tahun << " || " << "Uang Bulanan : Rp " << uangBulanan << " || " << "Pengeluaran Bulanan : Rp " 
-        << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa << " || " << " Ringkasan Pengeluaran : " << jenis << endl;
+        << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa << endl;
     }
         file.close();
     } else {
@@ -98,9 +98,9 @@ void targetMenabung(Keuangan& data){
     cin >> data.pengeluaranBulanan;
 
     if ( data.pengeluaranBulanan > data.targetMenabung ){
-        cout << "Target anda sudah tercapai yang sudah ditentukan" <<endl;
+        cout << "Target anda sudah tercapai yang sudah ditentukan." <<endl;
     } else {
-        cout << "Target anda belum tercapai" <<endl;
+        cout << "Target anda belum tercapai." <<endl;
     }
 }
 // Fungsi dari fungsi Pengeluaran terbanyak ini jadi saya lebih tau pengeluaran terbanyak saya di bulan apa dan tahun berapa
