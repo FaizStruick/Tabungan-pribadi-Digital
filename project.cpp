@@ -294,7 +294,7 @@ int main() {
     cout << "Apakah anda ingin memilih pilihan lain yang ada pada menu? (iya/tidak) : ";
     cin >> lanjutkan;
 
-    } while (lanjutkan == "iya" || lanjutkan == "Iya" || lanjutkan == "IYA");
+    } while (lanjutkan == "iya" || lanjutkan == "Iya" || lanjutkan == "IYA" );
 
     return 0;
 }
