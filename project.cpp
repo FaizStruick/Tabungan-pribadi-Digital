@@ -170,7 +170,7 @@ int main() {
             }
         }
     }
-    // Fungsi dari fixed ini menampilkan 2 angka dibelakang koma
+    // Fungsi dari fixed ini menampilkan 2 angka desimal dibelakang koma
     cout << fixed << setprecision(2);  
 
     // Awal untuk Memilih pilihan Menu
