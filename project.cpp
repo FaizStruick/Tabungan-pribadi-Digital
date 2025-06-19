@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
+#include <cctype>
+#include <conio.h>
 
 using namespace std;
 
@@ -17,9 +19,28 @@ struct Keuangan {
     float targetMenabung;
 };
 // alasan untuk menggunakan vector karena ada data yang mengambil dari file (data_uang.txt)
-vector<string> jenisPengeluaran;
-vector<float> jumlahPengeluaran;
-vector<Keuangan> semuaData;
+    vector<string> jenisPengeluaran;
+    vector<float> jumlahPengeluaran;
+    vector<Keuangan> semuaData;
+
+string inputPin(){
+    string pin = "";
+    char ch;
+    cout << "PIN = ";
+    while (true) {
+        ch = _getch();
+        if (ch == 13) break;
+        else if (ch == 8 && !pin.empty()) { 
+            cout << "\b \b";
+            pin.pop_back();
+        } else if (isdigit(ch)) {
+            pin += ch;
+            cout << '*';
+        }
+    }
+    cout << endl;
+    return pin;
+}
 
 void menyimpanData(const Keuangan& data){
     ofstream file("data_uang.txt", ios::app);
@@ -57,9 +78,9 @@ void tampilkanRiwayat() {
         string bulan;
         int tahun;
         float uangBulanan, pengeluaranBulanan, sisa;
-        string ringkasanKeuangan, jenis;
+        string ringkasanKeuangan;
         cout << "\n=== Riwayat Keuangan Bulanan Faiz ===" << endl;
-    while (file >> bulan >> tahun >> uangBulanan >> pengeluaranBulanan >> sisa >> jenis ) {
+    while (file >> bulan >> tahun >> uangBulanan >> pengeluaranBulanan >> sisa ) {
         cout << bulan << " " << tahun << " || " << "Uang Bulanan : Rp " << uangBulanan << " || " << "Pengeluaran Bulanan : Rp " 
         << pengeluaranBulanan << " || " << "Sisa Bulanan : Rp " << sisa << endl;
     }
@@ -132,8 +153,9 @@ int main() {
 
     while(percobaan < maksPercobaan){
         cout << "----- Selamat Datang Faiz!, silahkan untuk masukan pin terlebih dahulu ----- \n";
-        cout << "PIN = ";
-        cin >> pin;
+
+        pin = inputPin();
+
         if(pin == pinBenar){
             cout << "YEAY PIN ANDA BENAR, SILAHKAN MASUK" <<endl;
             break;
@@ -148,7 +170,7 @@ int main() {
             }
         }
     }
-    // Fungsi dari fixed ini supaya bilangan bulat di rupiahya nol nya 2
+    // Fungsi dari fixed ini menampilkan 2 angka dibelakang koma
     cout << fixed << setprecision(2);  
 
     // Awal untuk Memilih pilihan Menu
