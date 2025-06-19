@@ -174,8 +174,10 @@ int main() {
     cout << fixed << setprecision(2);  
 
     // Awal untuk Memilih pilihan Menu
+    string inputMenu;
     int pilihMenu;
-    char lanjutkan;
+    string lanjutkan;
+    
     
     do{
     cout << "-------------------------------------------------" <<endl;
@@ -191,8 +193,14 @@ int main() {
     cout << "|  6. Keluar dari Program                       |" <<endl;
     cout << "|                                               |" <<endl;
     cout << "|  Pilih Menu (1-6) : ";     
-    cin >> pilihMenu;                                      
+    cin >> inputMenu;;                                      
     cout << "-------------------------------------------------" <<endl;
+
+    if (inputMenu.length() == 1 && isdigit(inputMenu[0]) && inputMenu[0] >= '1' && inputMenu[0] <= '6') {
+        pilihMenu = inputMenu[0] - '0';
+    } else {
+        pilihMenu = -1;
+    }
 
 // Memasukan nama bulan apa dan tahun berapa, untuk dicatat lalu disimpan ke dalam file
     if(pilihMenu == 1){
@@ -286,7 +294,7 @@ int main() {
     cout << "Apakah anda ingin memilih pilihan lain yang ada pada menu? (iya/tidak) : ";
     cin >> lanjutkan;
 
-    } while (lanjutkan == 'y' || lanjutkan == 'Y');
+    } while (lanjutkan == "iya" || lanjutkan == "Iya" || lanjutkan == "IYA");
 
     return 0;
 }
